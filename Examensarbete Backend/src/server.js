@@ -85,6 +85,40 @@ app.get('/api/team', (req, res) => {
   });
 });
 
+// Endpoint to handle email subscriptions
+app.post('/api/subscribe', (req, res) => {
+  const { email } = req.body;
+  const filePath = path.join(__dirname, 'subscriptionsDb.json');
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.log("Error reading subscription data:", err);
+      return res.status(500).json({ error: 'Error reading subscription data' });
+    }
+
+    const subscriptions = JSON.parse(data);
+
+    // Check if email already exists
+    const emailExists = subscriptions.some(sub => sub.email === email);
+
+    if (emailExists) {
+      return res.status(400).json({ message: 'You are already subscribed.' });
+    }
+
+    // If not subscribed, add the email
+    subscriptions.push({ email });
+
+    fs.writeFile(filePath, JSON.stringify(subscriptions, null, 2), (err) => {
+      if (err) {
+        console.log("Error saving subscription data:", err);
+        return res.status(500).json({ error: 'Error saving subscription data' });
+      }
+
+      res.status(200).json({ message: 'You have been successfully subscribed!' });
+    });
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
