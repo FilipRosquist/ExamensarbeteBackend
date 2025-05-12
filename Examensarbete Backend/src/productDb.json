@@ -1,44 +1,116 @@
 [
-    {
-      "id": 1,
-      "title": "Water Powered Brush",
-      "price": 69.99,
-      "image": "product1.png",
-      "description": "A cleaning brush powered by water pressure to remove dirt and grime effectively. Eco-friendly and perfect for cleaning solar panels and delicate surfaces without harsh chemicals."
-    },
-    {
-      "id": 2,
-      "title": "Installation Tool",
-      "price": 49.00,
-      "image": "product2.png",
-      "description": "A versatile tool for quick and secure installation of solar equipment. Ergonomically designed for comfort and durability, making solar setup easy for professionals and DIYers."
-    },
-    {
-      "id": 3,
-      "title": "Solar Powered Brush",
-      "price": 299.00,
-      "image": "product3.png",
-      "description": "Eco-friendly brush powered by solar energy, ideal for cleaning solar panels and outdoor surfaces. Its autonomous operation makes it perfect for long-term use in sunny areas."
-    },
-    {
-      "id": 4,
-      "title": "Cleaning Kit",
-      "price": 79.99,
-      "image": "product4.png",
-      "description": "An all-in-one kit for cleaning solar panels and surfaces. Includes brushes, cleaning sprays, and microfiber cloths, ensuring a scratch-free, spotless clean every time."
-    },
-    {
-      "id": 5,
-      "title": "Suction Cup",
-      "price": 99.99,
-      "image": "product5.png",
-      "description": "Heavy-duty suction cup for secure lifting and handling of glass and panels. Ensures a firm grip, making it essential for solar panel installation and handling delicate materials."
-    },
-    {
-      "id": 6,
-      "title": "Solar Tool Roller",
-      "price": 149.99,
-      "image": "product6.png",
-      "description": "Durable roller tool designed for moving and installing solar panels. Its robust build and smooth wheels make it easy to transport panels with minimal effort."
-    }
+  {
+    "id": 1,
+    "title": "Water Powered Brush",
+    "price": 69.99,
+    "image": "product1.png",
+    "description": "The Water Powered Brush uses high-pressure water jets to dislodge dirt and grime without damaging surfaces. Its soft-bristle head is perfect for sensitive materials like solar panels and car exteriors. This tool is easy to connect to any standard garden hose, making it a must-have for eco-conscious cleaners.",
+    "rating": { "rate": 4.6, "count": 87 },
+    "specifications": [
+      "Weight: 1.2 kg",
+      "Length: 120 cm extendable",
+      "Material: Recycled plastic & aluminum",
+      "Connection: Standard hose fitting"
+    ],
+    "idealFor": [
+      "Homeowners cleaning rooftop solar panels",
+      "Car detailers",
+      "Environmentally-conscious users"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Installation Tool",
+    "price": 49.00,
+    "image": "product2.png",
+    "description": "The Installation Tool is a compact, ergonomic device designed to make solar panel mounting a breeze. With a non-slip grip and magnetic interchangeable heads, it's the perfect companion for any solar technician or DIY enthusiast tackling their own green energy projects.",
+    "rating": { "rate": 4.2, "count": 54 },
+    "specifications": [
+      "Weight: 0.8 kg",
+      "Material: Hardened aluminum & rubber grip",
+      "Tool heads: 4 magnetic bits",
+      "Grip: Anti-slip ergonomic design"
+    ],
+    "idealFor": [
+      "DIY solar installs",
+      "Field technicians",
+      "Electricians working on roof projects"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Solar Powered Brush",
+    "price": 299.00,
+    "image": "product3.png",
+    "description": "The Solar Powered Brush is a self-sustaining cleaning tool designed specifically for solar panels. Powered by sunlight, it automatically rotates and scrubs away dust and debris. Reduce maintenance costs and maximize solar output with this autonomous cleaner.",
+    "rating": { "rate": 4.8, "count": 120 },
+    "specifications": [
+      "Power: Solar panel with battery backup",
+      "Brush Width: 60 cm",
+      "Rotation: 360° motorized rotation",
+      "Battery Life: Up to 4 hours"
+    ],
+    "idealFor": [
+      "Commercial solar farms",
+      "Large rooftop installations",
+      "Remote off-grid solar setups"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Cleaning Kit",
+    "price": 79.99,
+    "image": "product4.png",
+    "description": "An all-in-one Cleaning Kit featuring multiple brushes, microfiber cloths, and eco-safe cleaning fluid. Designed for maximum compatibility with glass, panels, and plastics, it ensures a streak-free, scratch-resistant clean every time.",
+    "rating": { "rate": 4.4, "count": 68 },
+    "specifications": [
+      "Kit Includes: 3 brushes, 2 cloths, 1 spray bottle",
+      "Weight: 1.5 kg",
+      "Cleaner Volume: 500 ml non-toxic solution",
+      "Cloths: Ultra-soft microfiber"
+    ],
+    "idealFor": [
+      "Routine solar maintenance",
+      "Residential and commercial use",
+      "Glass surfaces and sensitive coatings"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Suction Cup",
+    "price": 99.99,
+    "image": "product5.png",
+    "description": "Heavy-duty Suction Cup designed for safely lifting and positioning glass panels and other flat surfaces. Industrial strength grip with quick-release functionality for efficiency and safety during installs.",
+    "rating": { "rate": 4.7, "count": 91 },
+    "specifications": [
+      "Grip Strength: Up to 100 kg",
+      "Diameter: 20 cm rubber cup",
+      "Material: Industrial silicone and ABS plastic",
+      "Release Mechanism: Quick lever"
+    ],
+    "idealFor": [
+      "Solar panel installation",
+      "Glass fitting professionals",
+      "Transporting heavy glass safely"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Solar Tool Roller",
+    "price": 149.99,
+    "image": "product6.png",
+    "description": "The Solar Tool Roller simplifies the transportation of heavy solar panels across roofs and work areas. With rugged wheels and a low-friction bed, it's engineered to reduce strain and speed up installations.",
+    "rating": { "rate": 4.5, "count": 76 },
+    "specifications": [
+      "Load Capacity: 150 kg",
+      "Wheel Type: Shock-absorbing rubberized",
+      "Frame: Powder-coated steel",
+      "Bed Width: 50 cm"
+    ],
+    "idealFor": [
+      "Moving solar panels during large installs",
+      "Construction crews",
+      "Tool transport in rugged environments"
+    ]
+  }
 ]
