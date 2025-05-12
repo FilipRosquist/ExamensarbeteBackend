@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Peter Andersson",
+    "role": "CEO",
+    "email": "peter@panel.com",
+    "phone": "+46 123 45 56 67",
+    "image": "AboutPerson1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Jessica Larsson",
+    "role": "CFO",
+    "email": "jessica@panel.com",
+    "phone": "+46 123 45 56 67",
+    "image": "AboutPerson2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Sara Svensson",
+    "role": "Marketing Director",
+    "email": "sara@panel.com",
+    "phone": "+46 123 45 56 67",
+    "image": "AboutPerson3.jpg"
+  }
+]
