@@ -1,0 +1,44 @@
+[
+    {
+      "id": 1,
+      "title": "Water Powered Brush",
+      "price": 69.99,
+      "image": "product1.png",
+      "description": "A cleaning brush powered by water pressure to remove dirt and grime effectively. Eco-friendly and perfect for cleaning solar panels and delicate surfaces without harsh chemicals."
+    },
+    {
+      "id": 2,
+      "title": "Installation Tool",
+      "price": 49.00,
+      "image": "product2.png",
+      "description": "A versatile tool for quick and secure installation of solar equipment. Ergonomically designed for comfort and durability, making solar setup easy for professionals and DIYers."
+    },
+    {
+      "id": 3,
+      "title": "Solar Powered Brush",
+      "price": 299.00,
+      "image": "product3.png",
+      "description": "Eco-friendly brush powered by solar energy, ideal for cleaning solar panels and outdoor surfaces. Its autonomous operation makes it perfect for long-term use in sunny areas."
+    },
+    {
+      "id": 4,
+      "title": "Cleaning Kit",
+      "price": 79.99,
+      "image": "product4.png",
+      "description": "An all-in-one kit for cleaning solar panels and surfaces. Includes brushes, cleaning sprays, and microfiber cloths, ensuring a scratch-free, spotless clean every time."
+    },
+    {
+      "id": 5,
+      "title": "Suction Cup",
+      "price": 99.99,
+      "image": "product5.png",
+      "description": "Heavy-duty suction cup for secure lifting and handling of glass and panels. Ensures a firm grip, making it essential for solar panel installation and handling delicate materials."
+    },
+    {
+      "id": 6,
+      "title": "Solar Tool Roller",
+      "price": 149.99,
+      "image": "product6.png",
+      "description": "Durable roller tool designed for moving and installing solar panels. Its robust build and smooth wheels make it easy to transport panels with minimal effort."
+    }
+]
