@@ -1,7 +1,12 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 
 const app = express();
 const port = 3000;
@@ -116,6 +121,53 @@ app.post('/api/subscribe', (req, res) => {
       res.status(200).json({ message: 'You have been successfully subscribed!' });
     });
   });
+});
+
+app.post('/create-checkout-session', async (req, res) => {
+  const { products } = req.body;
+  const filePath = path.join(__dirname, 'productDb.json');
+
+  try {
+    // Load product data from your database (JSON file)
+    const data = fs.readFileSync(filePath, 'utf8');
+    const allProducts = JSON.parse(data);
+
+    // Match and verify products from frontend
+    const lineItems = products.map(cartItem => {
+      const matchedProduct = allProducts.find(p => p.id === cartItem.id);
+
+      if (!matchedProduct) {
+        throw new Error(`Product ID ${cartItem.id} not found`);
+      }
+
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: matchedProduct.title,
+            images: [`http://localhost:${port}/images/${matchedProduct.image}`],
+          },
+          unit_amount: Math.round(matchedProduct.price * 100), // Stripe expects cents
+        },
+        quantity: cartItem.quantity,
+      };
+    });
+
+    // Create Stripe Checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'payment',
+      line_items: lineItems,
+      success_url: 'http://localhost:5173/success', // Replace with your frontend success route
+      cancel_url: 'http://localhost:5173/cancel',
+      
+    });
+
+    res.json({ id: session.id });
+  } catch (error) {
+    console.error("Stripe session error:", error);
+    res.status(500).json({ error: "Failed to create checkout session" });
+  }
 });
 
 // Start the server
