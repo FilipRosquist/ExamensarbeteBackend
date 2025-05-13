@@ -145,7 +145,7 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: matchedProduct.title,
-            images: [`http://localhost:${port}/images/${matchedProduct.image}`],
+            // images: [`http://localhost:${port}/images/${matchedProduct.image}`],
           },
           unit_amount: Math.round(matchedProduct.price * 100), // Stripe expects cents
         },
