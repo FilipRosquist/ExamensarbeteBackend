@@ -38,7 +38,6 @@ app.get('/products', (req, res) => {
 // Endpoint to fetch a specific product by ID
 app.get('/products/:id', (req, res) => {
   const productId = req.params.id;
-  console.log(`Fetching product with id: ${productId}`);  // Logs the product ID requested
   const filePath = path.join(__dirname, 'productDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {

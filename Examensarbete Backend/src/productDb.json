@@ -21,7 +21,7 @@
   {
     "id": 2,
     "title": "Installation Tool",
-    "price": 49.00,
+    "price": 49.99,
     "image": "product2.png",
     "description": "The Installation Tool is a compact, ergonomic device designed to make solar panel mounting a breeze. With a non-slip grip and magnetic interchangeable heads, it's the perfect companion for any solar technician or DIY enthusiast tackling their own green energy projects.",
     "rating": { "rate": 4.2, "count": 54 },
@@ -40,7 +40,7 @@
   {
     "id": 3,
     "title": "Solar Powered Brush",
-    "price": 299.00,
+    "price": 299.99,
     "image": "product3.png",
     "description": "The Solar Powered Brush is a self-sustaining cleaning tool designed specifically for solar panels. Powered by sunlight, it automatically rotates and scrubs away dust and debris. Reduce maintenance costs and maximize solar output with this autonomous cleaner.",
     "rating": { "rate": 4.8, "count": 120 },
