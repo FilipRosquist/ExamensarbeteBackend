@@ -112,5 +112,130 @@
       "Construction crews",
       "Tool transport in rugged environments"
     ]
-  }
+  },
+  {
+  "id": 7,
+  "title": "Solar Power Meter",
+  "price": 89.99,
+  "image": "product7.png",
+  "description": "The Solar Power Meter is a compact device designed to measure solar irradiance and output performance. Featuring a built-in solar sensor and an easy-to-read digital display, this meter is perfect for both field and lab use. It helps users monitor solar panel efficiency, identify shading issues, and optimize panel placement.",
+  "rating": { "rate": 4.7, "count": 102 },
+  "specifications": [
+    "Measurement Range: 0–1999 W/m²",
+    "Display: Large LCD with backlight",
+    "Power Supply: 9V battery (included)",
+    "Weight: 250 g",
+    "Dimensions: 140 x 60 x 25 mm"
+  ],
+  "idealFor": [
+    "Solar panel installers and technicians",
+    "Renewable energy researchers",
+    "Homeowners with solar systems"
+  ]
+},
+{
+  "id": 8,
+  "title": "Diagnostic Clamp Meter",
+  "price": 119.99,
+  "image": "product8.png",
+  "description": "This specialized Clamp Meter is designed for troubleshooting and maintaining solar panel systems. It safely measures current without breaking the circuit, and supports both AC and DC voltage. Its lightweight and ergonomic design makes it ideal for use in tight or elevated locations.",
+  "rating": { "rate": 4.8, "count": 76 },
+  "specifications": [
+    "Current Range: 0–1000A AC/DC",
+    "Voltage Range: 0–600V AC/DC",
+    "Display: 4-digit LCD",
+    "Jaw Opening: 30 mm",
+    "Power Supply: 2x AAA batteries"
+  ],
+  "idealFor": [
+    "Solar panel maintenance crews",
+    "Electricians working with renewable energy systems",
+    "Field technicians handling PV arrays"
+  ]
+},
+{
+  "id": 9,
+  "title": "Infrared Thermometer",
+  "price": 49.99,
+  "image": "product9.png",
+  "description": "The Infrared Thermometer quickly detects surface temperatures from a distance, ideal for identifying hot spots on solar panels. With a laser targeting system and a wide temperature range, it ensures accurate readings without direct contact. This tool helps prevent performance loss due to overheating cells.",
+  "rating": { "rate": 4.5, "count": 91 },
+  "specifications": [
+    "Temperature Range: -50°C to 550°C",
+    "Accuracy: ±1.5°C",
+    "Distance Spot Ratio: 12:1",
+    "Display: Backlit LCD",
+    "Battery: 2x AAA (included)"
+  ],
+  "idealFor": [
+    "Solar technicians diagnosing panel issues",
+    "Maintenance teams monitoring panel efficiency",
+    "Electricians working in high-heat environments"
+  ]
+},
+{
+  "id": 10,
+  "title": "Handheld Cleaning Tool",
+  "price": 39.99,
+  "image": "product10.png",
+  "description": "This ergonomic handheld tool is designed for cleaning dirt and debris from solar panels safely and efficiently. With a manual rotary brush and a built-in water spray nozzle, it ensures panels stay clean for maximum energy output. No power needed — it's entirely manual, making it perfect for off-grid use.",
+  "rating": { "rate": 4.7, "count": 76 },
+  "specifications": [
+    "Brush Type: Nylon rotary brush",
+    "Water Source: Connects to standard garden hose",
+    "Build: Durable ABS plastic",
+    "Grip: Ergonomic non-slip handle",
+    "Weight: 1.2 lbs"
+  ],
+  "idealFor": [
+    "Homeowners maintaining rooftop solar panels",
+    "Solar farm technicians performing regular cleaning",
+    "Eco-conscious users preferring manual, non-electric tools"
+  ]
+},
+{
+  "id": 11,
+  "title": "Solar Lamp",
+  "price": 24.99,
+  "image": "product11.png",
+  "description": "Illuminate your garden or walkway with this elegant solar lamp. Powered entirely by sunlight, it charges during the day and automatically lights up at night. The waterproof design and stainless steel body make it perfect for outdoor use year-round.",
+  "rating": { "rate": 4.3, "count": 134 },
+  "specifications": [
+    "Solar Panel: 2V 100mA polycrystalline",
+    "Battery: 600mAh Ni-MH rechargeable",
+    "Light Source: Warm white LED",
+    "Material: Stainless steel and ABS plastic",
+    "Waterproof Rating: IP65"
+  ],
+  "idealFor": [
+    "Garden and landscape lighting",
+    "Pathway or driveway illumination",
+    "Eco-friendly outdoor decor"
+  ]
+},
+{
+  "id": 12,
+  "title": "Digital Multimeter",
+  "price": 59.99,
+  "image": "product12.png",
+  "description": "Specifically calibrated for solar applications, this digital multimeter measures voltage, current, and resistance with high accuracy. Equipped with a large backlit display and auto-ranging capabilities, it's ideal for diagnosing and maintaining solar PV systems in the field or at home.",
+  "rating": { "rate": 4.8, "count": 112 },
+  "specifications": [
+    "DC Voltage Range: 0–1000V",
+    "AC/DC Current: Up to 10A",
+    "Resistance Measurement: Up to 40MΩ",
+    "Display: 6000-count backlit LCD",
+    "Safety Rating: CAT III 1000V / CAT IV 600V"
+  ],
+  "idealFor": [
+    "Solar panel installers and technicians",
+    "DIY users troubleshooting home solar systems",
+    "Electricians ensuring safe and optimal solar operation"
+  ]
+}
+
+
+
+
+
 ]
