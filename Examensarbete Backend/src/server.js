@@ -7,7 +7,6 @@ const path = require('path');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-
 const app = express();
 const port = 3000;
 
