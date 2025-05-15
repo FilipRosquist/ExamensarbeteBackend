@@ -89,6 +89,29 @@ app.get('/api/team', (req, res) => {
   });
 });
 
+// Endpoint to fetch all reviews
+app.get('/api/reviews', (req, res) => {
+  const filePath = path.join(__dirname, 'reviewsDb.json'); // Adjust if the file is in a subfolder
+
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.log("Error reading review data:", err);
+      return res.status(500).json({ error: 'Error reading review data' });
+    }
+
+    const reviews = JSON.parse(data);
+
+    // Map images to serve from the /images folder
+    const updatedReviews = reviews.map(review => ({
+      ...review,
+      image: `http://localhost:${port}/images/${review.image}`
+    }));
+
+    res.json(updatedReviews);
+  });
+});
+
+
 // Endpoint to handle email subscriptions
 app.post('/api/subscribe', (req, res) => {
   const { email } = req.body;
