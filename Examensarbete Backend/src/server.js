@@ -145,6 +145,8 @@ app.post('/api/subscribe', (req, res) => {
   });
 });
 
+
+
 app.post('/create-checkout-session', async (req, res) => {
   const { products } = req.body;
   const filePath = path.join(__dirname, 'productDb.json');
@@ -179,10 +181,10 @@ app.post('/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
+      billing_address_collection: 'required',  // <--- Add this line here
       line_items: lineItems,
       success_url: 'http://localhost:5173/success', // Replace with your frontend success route
       cancel_url: 'http://localhost:5173/cancel',
-      
     });
 
     res.json({ id: session.id });
@@ -191,6 +193,7 @@ app.post('/create-checkout-session', async (req, res) => {
     res.status(500).json({ error: "Failed to create checkout session" });
   }
 });
+
 
 // Start the server
 app.listen(port, () => {
