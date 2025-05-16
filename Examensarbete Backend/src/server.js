@@ -1,52 +1,55 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') }); // ✅ Fix env path
+console.log("Stripe key loaded:", process.env.STRIPE_SECRET_KEY); // Debug check
 
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
-const path = require('path');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const port = 3000;
 
+// Global error logging
+process.on('uncaughtException', err => console.error('Uncaught Exception:', err));
+process.on('unhandledRejection', reason => console.error('Unhandled Rejection:', reason));
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Serve static images from the 'images' folder
+// Serve static images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// Endpoint to fetch all products
+// GET all products
 app.get('/products', (req, res) => {
-  const filePath = path.join(__dirname, 'productDb.json'); // Path to your productDb.json
+  const filePath = path.join(__dirname, 'productDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log("Error reading product data:", err);
+      console.error("Error reading product data:", err);
       return res.status(500).json({ error: 'Error reading product data' });
     }
 
     const products = JSON.parse(data);
-
-    // Update the image URL to point to the server's image folder
     const updatedProducts = products.map(product => ({
       ...product,
-      image: `http://localhost:${port}/images/${product.image}` // Correct image path
+      image: `http://localhost:${port}/images/${product.image}`
     }));
 
-    res.json(updatedProducts); // Return product data as a JSON response
+    res.json(updatedProducts);
   });
 });
 
-// Endpoint to fetch a specific product by ID
+// GET product by ID
 app.get('/products/:id', (req, res) => {
   const productId = req.params.id;
   const filePath = path.join(__dirname, 'productDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log("Error reading product data:", err);
+      console.error("Error reading product data:", err);
       return res.status(500).json({ error: 'Error reading product data' });
     }
 
@@ -59,48 +62,44 @@ app.get('/products/:id', (req, res) => {
 
     const updatedProduct = {
       ...product,
-      image: `http://localhost:${port}/images/${product.image}` // Correct image path
+      image: `http://localhost:${port}/images/${product.image}`
     };
 
     res.json(updatedProduct);
   });
 });
 
-// Endpoint to fetch all team members
+// GET all team members
 app.get('/api/team', (req, res) => {
-  const filePath = path.join(__dirname, 'workTeamDb.json'); // Path to your workTeamDb.json
+  const filePath = path.join(__dirname, 'workTeamDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log("Error reading team data:", err);
+      console.error("Error reading team data:", err);
       return res.status(500).json({ error: 'Error reading team data' });
     }
 
     const teamMembers = JSON.parse(data);
-
-    // Update the image URL to point to the server's image folder
-    const updatedTeamMembers = teamMembers.map(member => ({
+    const updatedTeam = teamMembers.map(member => ({
       ...member,
-      image: `http://localhost:${port}/images/${member.image}` // Correct image path
+      image: `http://localhost:${port}/images/${member.image}`
     }));
 
-    res.json(updatedTeamMembers); // Return team data as a JSON response
+    res.json(updatedTeam);
   });
 });
 
-// Endpoint to fetch all reviews
+// GET all reviews
 app.get('/api/reviews', (req, res) => {
-  const filePath = path.join(__dirname, 'reviewsDb.json'); // Adjust if the file is in a subfolder
+  const filePath = path.join(__dirname, 'reviewsDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log("Error reading review data:", err);
+      console.error("Error reading review data:", err);
       return res.status(500).json({ error: 'Error reading review data' });
     }
 
     const reviews = JSON.parse(data);
-
-    // Map images to serve from the /images folder
     const updatedReviews = reviews.map(review => ({
       ...review,
       image: `http://localhost:${port}/images/${review.image}`
@@ -110,33 +109,29 @@ app.get('/api/reviews', (req, res) => {
   });
 });
 
-
-// Endpoint to handle email subscriptions
+// POST subscribe email
 app.post('/api/subscribe', (req, res) => {
   const { email } = req.body;
   const filePath = path.join(__dirname, 'subscriptionsDb.json');
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log("Error reading subscription data:", err);
+      console.error("Error reading subscription data:", err);
       return res.status(500).json({ error: 'Error reading subscription data' });
     }
 
     const subscriptions = JSON.parse(data);
-
-    // Check if email already exists
     const emailExists = subscriptions.some(sub => sub.email === email);
 
     if (emailExists) {
       return res.status(400).json({ message: 'You are already subscribed.' });
     }
 
-    // If not subscribed, add the email
     subscriptions.push({ email });
 
-    fs.writeFile(filePath, JSON.stringify(subscriptions, null, 2), (err) => {
+    fs.writeFile(filePath, JSON.stringify(subscriptions, null, 2), err => {
       if (err) {
-        console.log("Error saving subscription data:", err);
+        console.error("Error saving subscription data:", err);
         return res.status(500).json({ error: 'Error saving subscription data' });
       }
 
@@ -145,44 +140,35 @@ app.post('/api/subscribe', (req, res) => {
   });
 });
 
+// POST Stripe checkout session
 app.post('/create-checkout-session', async (req, res) => {
   const { products } = req.body;
   const filePath = path.join(__dirname, 'productDb.json');
 
   try {
-    // Load product data from your database (JSON file)
     const data = fs.readFileSync(filePath, 'utf8');
     const allProducts = JSON.parse(data);
 
-    // Match and verify products from frontend
     const lineItems = products.map(cartItem => {
       const matchedProduct = allProducts.find(p => p.id === cartItem.id);
-
-      if (!matchedProduct) {
-        throw new Error(`Product ID ${cartItem.id} not found`);
-      }
+      if (!matchedProduct) throw new Error(`Product ID ${cartItem.id} not found`);
 
       return {
         price_data: {
           currency: 'usd',
-          product_data: {
-            name: matchedProduct.title,
-            // images: [`http://localhost:${port}/images/${matchedProduct.image}`],
-          },
-          unit_amount: Math.round(matchedProduct.price * 100), // Stripe expects cents
+          product_data: { name: matchedProduct.title },
+          unit_amount: Math.round(matchedProduct.price * 100),
         },
         quantity: cartItem.quantity,
       };
     });
 
-    // Create Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: lineItems,
-      success_url: 'http://localhost:5173/success', // Replace with your frontend success route
+      success_url: 'http://localhost:5173/success',
       cancel_url: 'http://localhost:5173/cancel',
-      
     });
 
     res.json({ id: session.id });
@@ -192,7 +178,7 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-// Start the server
+// Start server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
