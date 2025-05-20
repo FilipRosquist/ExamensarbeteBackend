@@ -10,14 +10,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Serve static images from the 'images' folder
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// --- Products Endpoints ---
 app.get('/products', (req, res) => {
   const filePath = path.join(__dirname, 'productDb.json');
 
@@ -29,7 +26,6 @@ app.get('/products', (req, res) => {
 
     const products = JSON.parse(data);
 
-    // Update image URLs
     const updatedProducts = products.map(product => ({
       ...product,
       image: `http://localhost:${port}/images/${product.image}`
@@ -65,7 +61,6 @@ app.get('/products/:id', (req, res) => {
   });
 });
 
-// --- Team Endpoint ---
 app.get('/api/team', (req, res) => {
   const filePath = path.join(__dirname, 'workTeamDb.json');
 
@@ -86,7 +81,6 @@ app.get('/api/team', (req, res) => {
   });
 });
 
-// --- Reviews Endpoint ---
 app.get('/api/reviews', (req, res) => {
   const filePath = path.join(__dirname, 'reviewsDb.json');
 
@@ -107,7 +101,6 @@ app.get('/api/reviews', (req, res) => {
   });
 });
 
-// --- Subscriptions Endpoint ---
 app.post('/api/subscribe', (req, res) => {
   const { email } = req.body;
   const filePath = path.join(__dirname, 'subscriptionsDb.json');
@@ -120,7 +113,6 @@ app.post('/api/subscribe', (req, res) => {
 
     const subscriptions = JSON.parse(data);
 
-    // Check for existing email
     if (subscriptions.some(sub => sub.email === email)) {
       return res.status(400).json({ message: 'You are already subscribed.' });
     }
@@ -138,22 +130,18 @@ app.post('/api/subscribe', (req, res) => {
   });
 });
 
-// --- Stripe Checkout Session with unique customer per purchase ---
 app.post('/create-checkout-session', async (req, res) => {
-  const { products } = req.body; // frontend sends products array only
+  const { products } = req.body;
 
   try {
-    // Create new Stripe customer (anonymous)
     const customer = await stripe.customers.create();
 
     console.log('Created new Stripe customer:', customer.id);
 
-    // Load product data
     const filePath = path.join(__dirname, 'productDb.json');
     const data = fs.readFileSync(filePath, 'utf8');
     const allProducts = JSON.parse(data);
 
-    // Prepare line items for checkout
     const lineItems = products.map(cartItem => {
       const matchedProduct = allProducts.find(p => p.id === cartItem.id);
       if (!matchedProduct) {
@@ -164,7 +152,6 @@ app.post('/create-checkout-session', async (req, res) => {
           currency: 'usd',
           product_data: {
             name: matchedProduct.title,
-            // images: [`http://localhost:${port}/images/${matchedProduct.image}`],
           },
           unit_amount: Math.round(matchedProduct.price * 100),
         },
@@ -172,7 +159,6 @@ app.post('/create-checkout-session', async (req, res) => {
       };
     });
 
-    // Create checkout session with unique customer
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
@@ -180,7 +166,7 @@ app.post('/create-checkout-session', async (req, res) => {
       line_items: lineItems,
       success_url: 'http://localhost:5173/success',
       cancel_url: 'http://localhost:5173/cancel',
-      customer: customer.id, // unique customer ID per session
+      customer: customer.id,
     });
 
     console.log('Created Stripe checkout session:', session.id, 'with customer:', session.customer);
@@ -192,7 +178,6 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
